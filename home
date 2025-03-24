@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Website - Links and Pages</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; }
+        nav { margin-bottom: 20px; }
+        a { margin-right: 10px; text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Sample Website</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>About Links and Pages</h2>
+        <p>This website demonstrates basic navigation using HTML links. Click on the links above to visit different pages.</p>
+    </section>
+</body>
+</html>
