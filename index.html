@@ -1,119 +1,137 @@
 <!-- ============================================
-  MULTI-PAGE PORTFOLIO STYLE
+  MINIMALIST SINGLE-PAGE SITE WITH SIDEBAR
   - Tailwind CSS (CDN)
-  - Homepage with navigation to other pages
+  - GSAP for animations
+  - Soft gray theme with subtle gradients
+  - Animated content fade/expand transitions
   ============================================ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hi! I’m Shar – Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Portfolio</title>
 
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP for smooth animations -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
   <style>
     body {
-      background: linear-gradient(to top, #cfe8ff 0%, #ffffff 60%);
       font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f6f7 0%, #e9ebee 100%);
+      color: #333;
+      overflow-x: hidden;
     }
-    .card {
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      background-color: white;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .sidebar {
+      background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+      width: 240px;
+      transition: width 0.3s ease;
     }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    .sidebar-item {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
-    .icon-btn:hover {
-      transform: scale(1.1);
+    .sidebar-item:hover {
+      background: linear-gradient(to right, #e2e6ea, #f8f9fa);
     }
-    .icon-btn {
-      transition: transform 0.2s ease;
+    .sidebar-item.active {
+      background: linear-gradient(to right, #d1d5db, #f8f9fa);
+      font-weight: 600;
+      border-left: 4px solid #3b82f6;
+    }
+    .content-section {
+      opacity: 0;
+      transform: translateX(-30px);
     }
   </style>
 </head>
 
-<body class="flex flex-col items-center justify-between min-h-screen text-gray-700 relative overflow-hidden">
-  <!-- Top icons -->
-  <div class="flex justify-between w-full max-w-6xl px-6 pt-4 text-2xl text-gray-500">
-    <span>☀️</span>
-    <span>🔊</span>
-  </div>
-
-  <!-- Floating cute star -->
-  <div class="absolute top-8 left-1/4 animate-bounce text-3xl">⭐</div>
-
-  <!-- Main Card -->
-  <div class="card w-11/12 max-w-2xl p-8 text-center border border-gray-200">
-    <div class="bg-gray-800 text-white py-2 px-4 rounded-t-md -mt-8 mb-6 inline-block">home</div>
-
-    <h1 class="text-5xl font-bold mb-4">hi! <span class="text-amber-500">i’m shar</span></h1>
-    <p class="text-lg text-gray-500 mb-8">illustrator, animator, and developer</p>
-
-    <!-- Icon navigation -->
-    <div class="grid grid-cols-5 gap-4 text-sm text-gray-700">
-      <a href="about.html" class="flex flex-col items-center icon-btn cursor-pointer">
-        <div class="text-3xl">💬</div>
-        <p>about</p>
-      </a>
-      <a href="links.html" class="flex flex-col items-center icon-btn cursor-pointer">
-        <div class="text-3xl">🔗</div>
-        <p>links</p>
-      </a>
-      <a href="work.html" class="flex flex-col items-center icon-btn cursor-pointer">
-        <div class="text-3xl">📁</div>
-        <p>work</p>
-      </a>
-      <a href="faq.html" class="flex flex-col items-center icon-btn cursor-pointer">
-        <div class="text-3xl">❓</div>
-        <p>faq</p>
-      </a>
-      <a href="contact.html" class="flex flex-col items-center icon-btn cursor-pointer">
-        <div class="text-3xl">✉️</div>
-        <p>contact</p>
-      </a>
+<body class="flex min-h-screen">
+  <!-- Sidebar -->
+  <aside class="sidebar flex flex-col justify-between shadow-md fixed top-0 left-0 h-full">
+    <div>
+      <div class="text-center py-6 border-b border-gray-300">
+        <h1 class="text-xl font-bold text-gray-700">Your Name</h1>
+        <p class="text-sm text-gray-500">Designer & Developer</p>
+      </div>
+      <nav class="mt-6">
+        <div class="sidebar-item active" data-target="home">🏠 Home</div>
+        <div class="sidebar-item" data-target="about">💬 About</div>
+        <div class="sidebar-item" data-target="links">🔗 Links</div>
+        <div class="sidebar-item" data-target="works">📁 Works</div>
+        <div class="sidebar-item" data-target="faq">❓ FAQ</div>
+        <div class="sidebar-item" data-target="contact">✉️ Contact</div>
+      </nav>
     </div>
-  </div>
+    <footer class="text-center py-4 text-xs text-gray-400 border-t border-gray-300">© 2025 Your Name</footer>
+  </aside>
 
-  <!-- Bottom icons + footer -->
-  <div class="flex items-center gap-6 mb-4 text-2xl">
-    <a href="#" class="hover:text-blue-500">🐦</a>
-    <a href="#" class="hover:text-red-500">▶️</a>
-    <a href="#" class="hover:text-pink-500">📸</a>
-  </div>
-  <footer class="text-gray-500 text-sm mb-4">© 2025 Sharlene Yap</footer>
+  <!-- Main Content -->
+  <main class="ml-[240px] flex-1 flex items-center justify-center p-10">
+    <section id="home" class="content-section w-full max-w-2xl text-center">
+      <h2 class="text-4xl font-bold mb-4">Welcome to My Portfolio</h2>
+      <p class="text-gray-600">This is the home section. Explore the sidebar to learn more about me and my work.</p>
+    </section>
 
-  <div class="absolute bottom-4 right-4 text-5xl">🐸</div>
+    <section id="about" class="content-section hidden w-full max-w-2xl text-center">
+      <h2 class="text-4xl font-bold mb-4">About Me</h2>
+      <p class="text-gray-600">I’m a creative developer and designer who loves crafting intuitive digital experiences.</p>
+    </section>
+
+    <section id="links" class="content-section hidden w-full max-w-2xl text-center">
+      <h2 class="text-4xl font-bold mb-4">Links</h2>
+      <p class="text-gray-600">Here are some sample links to my social and professional profiles.</p>
+    </section>
+
+    <section id="works" class="content-section hidden w-full max-w-2xl text-center">
+      <h2 class="text-4xl font-bold mb-4">Works</h2>
+      <p class="text-gray-600">Showcasing some of my favorite projects and collaborations.</p>
+    </section>
+
+    <section id="faq" class="content-section hidden w-full max-w-2xl text-center">
+      <h2 class="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+      <p class="text-gray-600">Answers to some of the most common questions about my work and process.</p>
+    </section>
+
+    <section id="contact" class="content-section hidden w-full max-w-2xl text-center">
+      <h2 class="text-4xl font-bold mb-4">Contact</h2>
+      <p class="text-gray-600">Feel free to reach out to me via email or any of my listed profiles.</p>
+    </section>
+  </main>
+
+  <!-- JavaScript for tab switching and animations -->
+  <script>
+    const tabs = document.querySelectorAll('.sidebar-item');
+    const sections = document.querySelectorAll('.content-section');
+
+    // Initial animation for Home
+    window.addEventListener('load', () => {
+      const homeSection = document.querySelector('#home');
+      gsap.to(homeSection, { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out' });
+    });
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Update active tab
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Show the matching section
+        const targetId = tab.dataset.target;
+        sections.forEach(section => {
+          if (section.id === targetId) {
+            section.classList.remove('hidden');
+            gsap.fromTo(section, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out' });
+          } else {
+            section.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
-
-<!-- ============= Additional Pages =============
-Create the following files in the same folder:
-
-about.html, links.html, work.html, faq.html, contact.html
-Each file can follow this template (example for about.html):
-
--------------------------------------------
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About – Shar</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { background: linear-gradient(to top, #cfe8ff 0%, #ffffff 60%); font-family: 'Inter', sans-serif; }
-  </style>
-</head>
-<body class="flex flex-col items-center justify-center min-h-screen text-center">
-  <a href="index.html" class="absolute top-4 left-4 text-gray-600 hover:text-blue-500">← Home</a>
-  <h1 class="text-5xl font-bold text-amber-500 mb-4">About Me</h1>
-  <p class="text-gray-700 max-w-xl">I’m Shar, an illustrator, animator, and developer passionate about crafting cute, functional, and fun web experiences.</p>
-</body>
-</html>
--------------------------------------------
-
-Repeat similar for links.html, work.html, faq.html, and contact.html.
--->
