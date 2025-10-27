@@ -1,25 +1,96 @@
+<!-- ============================================
+  DYNAMIC GITHUB PAGES SITE EXAMPLE
+  - Tailwind CSS (CDN)
+  - GSAP for animations
+  - Vanta.js dynamic background
+  ============================================ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Website - Links and Pages</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; }
-        nav { margin-bottom: 20px; }
-        a { margin-right: 10px; text-decoration: none; color: blue; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic GitHub Pages Demo</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP for motion animations -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+  <!-- Vanta.js for animated background -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    .hover-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.6);
+    }
+  </style>
 </head>
-<body>
-    <h1>Welcome to the Sample Website</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <section>
-        <h2>About Links and Pages</h2>
-        <p>This website demonstrates basic navigation using HTML links. Click on the links above to visit different pages.</p>
-    </section>
+
+<body id="background">
+  <!-- Main Content -->
+  <div class="flex flex-col items-center justify-center h-screen text-center text-white">
+    <h1 class="text-5xl font-extrabold drop-shadow-lg mb-6">Welcome to My Dynamic Site ✨</h1>
+    <p class="text-lg mb-10 text-blue-100 max-w-lg">
+      Hover over the widgets below to see interactive effects. Move your mouse around for dynamic background motion.
+    </p>
+
+    <!-- Interactive Buttons -->
+    <div class="flex gap-8">
+      <div class="hover-card bg-blue-600 px-8 py-5 rounded-2xl cursor-pointer">
+        <h2 class="text-2xl font-semibold">Hover Me 💫</h2>
+      </div>
+      <div class="hover-card bg-pink-500 px-8 py-5 rounded-2xl cursor-pointer">
+        <h2 class="text-2xl font-semibold">Try Me 🌈</h2>
+      </div>
+      <div class="hover-card bg-purple-600 px-8 py-5 rounded-2xl cursor-pointer">
+        <h2 class="text-2xl font-semibold">Explore 🚀</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Vanta background
+    VANTA.WAVES({
+      el: "#background",
+      mouseControls: true,
+      touchControls: true,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x3b82f6,
+      shininess: 50.0,
+      waveHeight: 15.0,
+      waveSpeed: 1.0,
+      zoom: 1.0
+    });
+
+    // GSAP entry animations
+    window.addEventListener('load', () => {
+      gsap.from('h1', { duration: 1, y: -50, opacity: 0, ease: 'power3.out' });
+      gsap.from('p', { duration: 1, delay: 0.3, y: 20, opacity: 0, ease: 'power3.out' });
+      gsap.from('.hover-card', {
+        duration: 1,
+        delay: 0.5,
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        ease: 'back.out(1.7)'
+      });
+    });
+  </script>
 </body>
 </html>
