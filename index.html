@@ -1,8 +1,7 @@
 <!-- ============================================
-  CUTE PERSONAL PORTFOLIO STYLE (inspired layout)
+  MULTI-PAGE PORTFOLIO STYLE
   - Tailwind CSS (CDN)
-  - Soft rounded cards, icons, hover animations
-  - Minimal JS for theme toggle and smooth feel
+  - Homepage with navigation to other pages
   ============================================ -->
 <!DOCTYPE html>
 <html lang="en">
@@ -11,10 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hi! I’m Shar – Portfolio</title>
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Simple styling extensions -->
   <style>
     body {
       background: linear-gradient(to top, #cfe8ff 0%, #ffffff 60%);
@@ -58,26 +54,26 @@
 
     <!-- Icon navigation -->
     <div class="grid grid-cols-5 gap-4 text-sm text-gray-700">
-      <div class="flex flex-col items-center icon-btn cursor-pointer">
+      <a href="about.html" class="flex flex-col items-center icon-btn cursor-pointer">
         <div class="text-3xl">💬</div>
         <p>about</p>
-      </div>
-      <div class="flex flex-col items-center icon-btn cursor-pointer">
+      </a>
+      <a href="links.html" class="flex flex-col items-center icon-btn cursor-pointer">
         <div class="text-3xl">🔗</div>
         <p>links</p>
-      </div>
-      <div class="flex flex-col items-center icon-btn cursor-pointer">
+      </a>
+      <a href="work.html" class="flex flex-col items-center icon-btn cursor-pointer">
         <div class="text-3xl">📁</div>
         <p>work</p>
-      </div>
-      <div class="flex flex-col items-center icon-btn cursor-pointer">
+      </a>
+      <a href="faq.html" class="flex flex-col items-center icon-btn cursor-pointer">
         <div class="text-3xl">❓</div>
         <p>faq</p>
-      </div>
-      <div class="flex flex-col items-center icon-btn cursor-pointer">
+      </a>
+      <a href="contact.html" class="flex flex-col items-center icon-btn cursor-pointer">
         <div class="text-3xl">✉️</div>
         <p>contact</p>
-      </div>
+      </a>
     </div>
   </div>
 
@@ -89,7 +85,35 @@
   </div>
   <footer class="text-gray-500 text-sm mb-4">© 2025 Sharlene Yap</footer>
 
-  <!-- Cute bottom right frog -->
   <div class="absolute bottom-4 right-4 text-5xl">🐸</div>
 </body>
 </html>
+
+<!-- ============= Additional Pages =============
+Create the following files in the same folder:
+
+about.html, links.html, work.html, faq.html, contact.html
+Each file can follow this template (example for about.html):
+
+-------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Shar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: linear-gradient(to top, #cfe8ff 0%, #ffffff 60%); font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen text-center">
+  <a href="index.html" class="absolute top-4 left-4 text-gray-600 hover:text-blue-500">← Home</a>
+  <h1 class="text-5xl font-bold text-amber-500 mb-4">About Me</h1>
+  <p class="text-gray-700 max-w-xl">I’m Shar, an illustrator, animator, and developer passionate about crafting cute, functional, and fun web experiences.</p>
+</body>
+</html>
+-------------------------------------------
+
+Repeat similar for links.html, work.html, faq.html, and contact.html.
+-->
