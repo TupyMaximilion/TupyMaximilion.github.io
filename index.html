@@ -1,96 +1,95 @@
 <!-- ============================================
-  DYNAMIC GITHUB PAGES SITE EXAMPLE
+  CUTE PERSONAL PORTFOLIO STYLE (inspired layout)
   - Tailwind CSS (CDN)
-  - GSAP for animations
-  - Vanta.js dynamic background
+  - Soft rounded cards, icons, hover animations
+  - Minimal JS for theme toggle and smooth feel
   ============================================ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dynamic GitHub Pages Demo</title>
+  <title>Hi! I’m Shar – Portfolio</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- GSAP for motion animations -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-
-  <!-- Vanta.js for animated background -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
-
+  <!-- Simple styling extensions -->
   <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
+    body {
+      background: linear-gradient(to top, #cfe8ff 0%, #ffffff 60%);
       font-family: 'Inter', sans-serif;
     }
-    .hover-card {
+    .card {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      background-color: white;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .hover-card:hover {
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .icon-btn:hover {
       transform: scale(1.1);
-      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.6);
+    }
+    .icon-btn {
+      transition: transform 0.2s ease;
     }
   </style>
 </head>
 
-<body id="background">
-  <!-- Main Content -->
-  <div class="flex flex-col items-center justify-center h-screen text-center text-white">
-    <h1 class="text-5xl font-extrabold drop-shadow-lg mb-6">Welcome to My Dynamic Site ✨</h1>
-    <p class="text-lg mb-10 text-blue-100 max-w-lg">
-      Hover over the widgets below to see interactive effects. Move your mouse around for dynamic background motion.
-    </p>
+<body class="flex flex-col items-center justify-between min-h-screen text-gray-700 relative overflow-hidden">
+  <!-- Top icons -->
+  <div class="flex justify-between w-full max-w-6xl px-6 pt-4 text-2xl text-gray-500">
+    <span>☀️</span>
+    <span>🔊</span>
+  </div>
 
-    <!-- Interactive Buttons -->
-    <div class="flex gap-8">
-      <div class="hover-card bg-blue-600 px-8 py-5 rounded-2xl cursor-pointer">
-        <h2 class="text-2xl font-semibold">Hover Me 💫</h2>
+  <!-- Floating cute star -->
+  <div class="absolute top-8 left-1/4 animate-bounce text-3xl">⭐</div>
+
+  <!-- Main Card -->
+  <div class="card w-11/12 max-w-2xl p-8 text-center border border-gray-200">
+    <div class="bg-gray-800 text-white py-2 px-4 rounded-t-md -mt-8 mb-6 inline-block">home</div>
+
+    <h1 class="text-5xl font-bold mb-4">hi! <span class="text-amber-500">i’m shar</span></h1>
+    <p class="text-lg text-gray-500 mb-8">illustrator, animator, and developer</p>
+
+    <!-- Icon navigation -->
+    <div class="grid grid-cols-5 gap-4 text-sm text-gray-700">
+      <div class="flex flex-col items-center icon-btn cursor-pointer">
+        <div class="text-3xl">💬</div>
+        <p>about</p>
       </div>
-      <div class="hover-card bg-pink-500 px-8 py-5 rounded-2xl cursor-pointer">
-        <h2 class="text-2xl font-semibold">Try Me 🌈</h2>
+      <div class="flex flex-col items-center icon-btn cursor-pointer">
+        <div class="text-3xl">🔗</div>
+        <p>links</p>
       </div>
-      <div class="hover-card bg-purple-600 px-8 py-5 rounded-2xl cursor-pointer">
-        <h2 class="text-2xl font-semibold">Explore 🚀</h2>
+      <div class="flex flex-col items-center icon-btn cursor-pointer">
+        <div class="text-3xl">📁</div>
+        <p>work</p>
+      </div>
+      <div class="flex flex-col items-center icon-btn cursor-pointer">
+        <div class="text-3xl">❓</div>
+        <p>faq</p>
+      </div>
+      <div class="flex flex-col items-center icon-btn cursor-pointer">
+        <div class="text-3xl">✉️</div>
+        <p>contact</p>
       </div>
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script>
-    // Initialize Vanta background
-    VANTA.WAVES({
-      el: "#background",
-      mouseControls: true,
-      touchControls: true,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0x3b82f6,
-      shininess: 50.0,
-      waveHeight: 15.0,
-      waveSpeed: 1.0,
-      zoom: 1.0
-    });
+  <!-- Bottom icons + footer -->
+  <div class="flex items-center gap-6 mb-4 text-2xl">
+    <a href="#" class="hover:text-blue-500">🐦</a>
+    <a href="#" class="hover:text-red-500">▶️</a>
+    <a href="#" class="hover:text-pink-500">📸</a>
+  </div>
+  <footer class="text-gray-500 text-sm mb-4">© 2025 Sharlene Yap</footer>
 
-    // GSAP entry animations
-    window.addEventListener('load', () => {
-      gsap.from('h1', { duration: 1, y: -50, opacity: 0, ease: 'power3.out' });
-      gsap.from('p', { duration: 1, delay: 0.3, y: 20, opacity: 0, ease: 'power3.out' });
-      gsap.from('.hover-card', {
-        duration: 1,
-        delay: 0.5,
-        y: 50,
-        opacity: 0,
-        stagger: 0.2,
-        ease: 'back.out(1.7)'
-      });
-    });
-  </script>
+  <!-- Cute bottom right frog -->
+  <div class="absolute bottom-4 right-4 text-5xl">🐸</div>
 </body>
 </html>
